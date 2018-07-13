@@ -22,4 +22,17 @@ public class CaseFormatTest {
         assertEquals("foo", CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_UNDERSCORE, "foo"));
         assertEquals("foo_bar", CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_UNDERSCORE, "foo-bar"));
     }
+    public void testLowerUnderscoreToUpperUnderscore() {
+        if(true){
+            throw new RuntimeException("aaa");
+        }
+        assertEquals("FOO", CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_UNDERSCORE, "foo"));
+        assertEquals("FOO_BAR", CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_UNDERSCORE, "foo_bar"));
+    }
+
+    public void testLowerCamelToLowerHyphen() {
+        assertEquals("foo", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_HYPHEN, "foo"));
+        assertEquals("foo-bar", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_HYPHEN, "fooBar"));
+        assertEquals("h-t-t-p", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_HYPHEN, "HTTP"));
+    }
 }
