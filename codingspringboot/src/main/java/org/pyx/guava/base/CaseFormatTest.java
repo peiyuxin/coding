@@ -26,6 +26,7 @@ public class CaseFormatTest {
         if(true){
             throw new RuntimeException("aaa");
         }
+        System.out.println(111);
         assertEquals("FOO", CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_UNDERSCORE, "foo"));
         assertEquals("FOO_BAR", CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_UNDERSCORE, "foo_bar"));
     }
