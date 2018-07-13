@@ -1,3 +1,29 @@
+logs
+.idea
+**.idea
+**.settings
+.project
+**.classpath
+**target
+**.iml
+*/target
+**.project
+**.ipr
+**.iws
+**.svn
+**/target
+**/test-output
+**.DS_Store
+*.externalToolBuilders/
+eclipse.bat
+*/.springBeans
+reactor.bat
+website/cas/overlays/
+resolvedPom.xml
+**.bak
+**/target/**
+**/bin/**
+**/META-INF/**
 # Compiled class file
 *.class
 
