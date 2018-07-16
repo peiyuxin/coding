@@ -9,6 +9,9 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>sea</module>
+    </modules>
     <!--<modules>
         <module>approval-api</module>
         <module>approval-dal</module>
@@ -36,6 +39,16 @@
             <url>http://repository.springsource.com/maven/bundles/external</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version></version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <properties>
         
