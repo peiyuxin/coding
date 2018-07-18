@@ -12,6 +12,7 @@ import com.google.common.util.concurrent.RateLimiter;
 import static java.lang.Thread.currentThread;
 
 /**
+ * 基于令牌桶算法的限流工具示例
  * @author pyx
  * @date 2018/7/17
  */
@@ -38,8 +39,32 @@ public class RateLimiterExample {
         IntStream.range(0,10).forEach((i) -> {
             //RateLimiterExample::testSemaphore 这种写法是创建一个线程
             //RateLimiterExample::testSemaphore 等价与() ->RateLimiterExample.runTestSemaphore()     x->System.out.println(x)
-            service.submit(() -> RateLimiterExample.runTestSemaphore());
+            service.submit(() -> RateLimiterExample.testSemaphore());
             //service.submit(RateLimiterExample::testSemaphore);
         });
+    }
+
+    /**
+     * Guava的RateLimiter
+     */
+    public static void testLimiter(){
+        System.out.println(currentThread().getName()+" waiting  " +limiter.acquire());
+    }
+
+    /**
+     * Guava的RateLimiter
+     */
+    public static void runTestLimiter(){
+        ExecutorService service = Executors.newFixedThreadPool(10);
+        IntStream.range(0,10).forEach((i)->{
+            //RateLimiterExample::testLimiter 这种写法是创建一个线程
+            service.submit(RateLimiterExample::testLimiter);
+        });
+    }
+
+    public static void main(String[] args) {
+        IntStream.range(0,10).forEach(System.out::println);
+        runTestSemaphore();
+        runTestLimiter();
     }
 }

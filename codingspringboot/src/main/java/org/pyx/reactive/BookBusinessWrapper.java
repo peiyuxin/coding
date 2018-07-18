@@ -9,12 +9,10 @@ public class BookBusinessWrapper {
         iBookService = new DefaultBookService();
     }
 
-    public Task<Book> getBookById(int bookId){
-        return new Task<Book>() {
-            @Override
-            public void doHandle(final CallBack<Book> callback) {
-                iBookService.getBookById(bookId,callback);
-            }
+    public <T extends Task<Book>> T  getBookById(int bookId){
+        //T继承及强转非常安全 逆变,协变
+        return (T)(Task<Book>)(CallBack<Book> callback) -> {
+            iBookService.getBookById(bookId, callback);
         };
     }
 

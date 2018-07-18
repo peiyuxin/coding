@@ -16,6 +16,8 @@ public class DefaultBookService implements IBookService{
     }
     @Override
     public Book getBookById(int bookId,CallBack<Book> callBack) {
+        Book book = cMap.getOrDefault(bookId,DEAFULT_BOOK);
+        callBack.onResult(book);
         return cMap.getOrDefault(bookId,DEAFULT_BOOK);
     }
 

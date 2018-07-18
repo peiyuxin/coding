@@ -5,6 +5,8 @@ package org.pyx.reactive;
  */
 public class BookBusiness {
     private BookBusinessWrapper businessWrapper;
+
+    private IBookService bookService;
     public BookBusiness(){
         businessWrapper = new BookBusinessWrapper();
     }
@@ -30,14 +32,22 @@ public class BookBusiness {
         };
     }
 
-    public AbstractTask<Void> modifyBook(int bookId){
-        AbstractTask<Book> bookTask = (AbstractTask<Book>)businessWrapper.getBookById(bookId);
-        AbstractTask<Void> baseTask = bookTask.map(new Func<Book, AbstractTask<Void>>() {
+    public Task<Void> modifyBook(int bookId){
+        AbstractTask<Book> bookTask = businessWrapper.getBookById(bookId);
+        //AbstractTask<Void> baseTask = //func.call(bookTask)
+        Task<Void> task=bookTask.map(new Func<Book, Task<Void>>() {
             @Override
-            public AbstractTask<Void> call(Book param) {
-                return (AbstractTask<Void>)businessWrapper.updateBook(param);
+            public Task<Void> call(Book param) {
+                return businessWrapper.updateBook(param);
             }
         });
-        return baseTask;
+        /*bookTask.map(new Func<Book, Task<Void>>() {
+            @Override
+            public Task<Void> call(Book param) {
+                return businessWrapper.updateBook(param);
+            }
+        });*/
+        return task;
     }
+
 }
