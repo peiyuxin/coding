@@ -22,7 +22,7 @@ public class BuckerTest {
 
         //生产线程 10个线程 每秒提交 50个数据  1/0.2s*10=50个
         IntStream.range(0,10).forEach(i -> {
-            new Thread(()-> {
+            new Thread(() -> {
                 for (; ;) {
                     int data = DATA_CREATOR.incrementAndGet();
                     try {
