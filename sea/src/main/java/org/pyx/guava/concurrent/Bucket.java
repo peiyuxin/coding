@@ -40,6 +40,7 @@ public class Bucket{
         }else {
             //这里时候采用降级策略了。消费速度跟不上产生速度时，而且桶满了，抛出异常
             //或者存入MQ DB等后续处理
+            System.err.println(currentThread().getName()+" the bucket is ful..");
             throw new IllegalStateException(currentThread().getName()+" the bucket is ful..Pls latter can try..");
         }
     }
@@ -58,7 +59,7 @@ public class Bucket{
         if (consumerMonitor.enterIf(consumerMonitor.newGuard(()->!container.isEmpty()))){
             try {
                 //不打印时 写 consumerRate.acquire();
-                System.out.println(currentThread()+"  waiting"+consumerRate.acquire());
+                System.out.println(currentThread()+"  waiting " + consumerRate.acquire());
                 Integer data = container.poll();
                 //container.peek() 只是去取出来不会删掉
                 Consumer rawConsumer = consumer;

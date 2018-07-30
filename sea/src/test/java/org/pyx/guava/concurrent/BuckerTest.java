@@ -4,8 +4,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.BlockJUnit4ClassRunner;
 
 import static java.lang.Thread.currentThread;
 
@@ -13,7 +15,14 @@ import static java.lang.Thread.currentThread;
  * @author pyx
  * @date 2018/7/18
  */
-public class BuckerTest {
+@RunWith(BuckerRunner.class)
+//@RunWith(BlockJUnit4ClassRunner.class)
+public class BuckerTest{
+
+    public static void main(String[] args) {
+        BuckerTest bt = new BuckerTest();
+        bt.test();
+    }
 
     @Test
     public void test(){
@@ -28,7 +37,7 @@ public class BuckerTest {
                     try {
                         bucket.submit(data);
                         System.out.println("submit data");
-                        TimeUnit.MILLISECONDS.sleep(200);
+                        TimeUnit.MILLISECONDS.sleep(20);
                     } catch (Exception e) {
                         //对submit时，如果桶满了可能会抛出异常
                         if (e instanceof IllegalStateException) {
@@ -47,17 +56,23 @@ public class BuckerTest {
             }).start();
         });
 
-        //消费线程  采用RateLimiter每秒处理10个  综合的比率是5:1
+        //消费线程  采用RateLimiter每秒处理10个  综合的比率是5:1 1/0.1s*10=100个
         IntStream.range(0,10).forEach(i ->{
             new Thread(
                 () -> {
                     for (;;){
                         bucket.cost(x ->{
-                            System.out.println(currentThread()+"C.."+x);
+                            System.out.println(currentThread()+"bucket cost.."+x);
                         });
                     }
                 }
             ).start();
         });
+
+        try {
+            TimeUnit.SECONDS.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

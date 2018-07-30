@@ -39,6 +39,8 @@ public class OptionalTest {
 
     @Test
     public void testOf() {
+
+
         assertEquals("training", Optional.of("training").get());
     }
 

@@ -25,10 +25,12 @@ public class AsciiTest {
 
     @Test
     public void testToLowerCase() {
+
         assertEquals(LOWER, Ascii.toLowerCase(UPPER));
         assertSame(LOWER, Ascii.toLowerCase(LOWER));
         assertEquals(IGNORED, Ascii.toLowerCase(IGNORED));
         assertEquals("foobar", Ascii.toLowerCase("fOobaR"));
+        throw new RuntimeException("");
     }
 
     @Test
