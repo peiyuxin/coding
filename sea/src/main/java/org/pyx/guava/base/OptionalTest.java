@@ -2,6 +2,7 @@ package org.pyx.guava.base;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.google.common.annotations.GwtIncompatible;
@@ -12,6 +13,7 @@ import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
 import com.google.common.testing.EqualsTester;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -39,7 +41,13 @@ public class OptionalTest {
 
     @Test
     public void testOf() {
+        String fieldName = "aaa";
+        Map map = Maps.newHashMap();
+        map.put("aaa","bbb");
 
+
+        Object s = java.util.Optional.ofNullable(null).orElse(map.get(fieldName));
+        System.out.println(s);
 
         assertEquals("training", Optional.of("training").get());
     }
