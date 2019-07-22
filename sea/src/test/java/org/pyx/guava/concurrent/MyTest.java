@@ -2,7 +2,6 @@ package org.pyx.guava.concurrent;
 
 import java.math.BigDecimal;
 
-import org.apache.commons.dbutils.DbUtils;
 import org.junit.Test;
 
 /**
@@ -20,5 +19,11 @@ public class MyTest {
         BigDecimal b = new BigDecimal(1111111111.77777);
         System.out.println(b.floatValue());
         //DbUtils.close(new Connection());
+    }
+    @Test
+    public void testInt(){
+        Integer i = new Integer(100);
+        Integer j = new Integer(100);
+        System.out.println(i == 100);
     }
 }

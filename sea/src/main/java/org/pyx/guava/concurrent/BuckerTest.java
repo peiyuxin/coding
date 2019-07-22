@@ -5,7 +5,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static java.lang.Thread.currentThread;
 
