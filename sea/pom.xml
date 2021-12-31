@@ -91,9 +91,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.11</version>
         </dependency>
-        <!-- ================================================= -->
-        <!-- 日志及相关依赖（用slf4j+logback代替jcl+log4j） -->
-        <!-- ================================================= -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.5.11</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
