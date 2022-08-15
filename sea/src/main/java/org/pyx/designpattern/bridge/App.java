@@ -32,6 +32,7 @@ public class App {
         road1.run();
         Road road2 = new Highway(new SUV());
         road2.run();
+        double[] d = new double[2];
         Road road3 = new Street(new Sedan());
         road3.run();
         Road road4 = new Street(new SUV());
