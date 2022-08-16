@@ -1,4 +1,4 @@
-package org.pyx.pyx.argorithm.array;
+package org.pyx.pyx.argorithm.dp;
 
 import org.junit.Test;
 
@@ -56,7 +56,24 @@ public class CoinChange {
     }
 
     public int coinChange2(int[] coins, int amount) {
-        return -1;
+        if (coins == null || coins.length == 0 || amount ==0 ){
+            return 0;
+        }
+        int[] dp = new int[amount + 1];
+        for (int i = 1; i <= amount; i++){
+            dp[i] = Integer.MAX_VALUE;
+            for(int j =0;j < coins.length;j++){
+                if(coins[j] <= i && dp[i - coins[j]] != Integer.MAX_VALUE){
+                    dp[i] = Integer.min(dp[i], 1+dp[i - coins[j]]);
+                }
+            }
+        }
+        if(dp[amount] == Integer.MAX_VALUE){
+            return -1;
+        }else{
+            return dp[amount];
+        }
+
     }
 
     @Test
@@ -68,6 +85,6 @@ public class CoinChange {
         // 保存每一个面值找零所需的最小硬币数，0号单元舍弃不用，所以要多加1
         int[] minCoinChanges = new int[money + 1];
         coinChange(minCoinChanges, coins, money);
-
+        System.out.println(coinChange2(coins,money));
     }
 }
