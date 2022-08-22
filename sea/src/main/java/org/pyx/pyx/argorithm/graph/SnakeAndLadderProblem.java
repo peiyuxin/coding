@@ -36,6 +36,9 @@ import java.util.Queue;
  * number of cells in the given board, second is an array ‘move[0…N-1]’ of size N. An entry move[i] is -1 if there is
  * no snake and no ladder from i, otherwise move[i] contains index of destination cell for the snake or the ladder at i.
  * http://www.geeksforgeeks.org/snake-ladder-problem-2/
+ * Time complexity: O(N).
+ * Auxiliary Space O(N)
+ *
  * @author pyx
  * @date 2022/8/22
  */
