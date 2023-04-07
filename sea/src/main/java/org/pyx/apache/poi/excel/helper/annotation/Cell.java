@@ -1,0 +1,42 @@
+package org.pyx.apache.poi.excel.helper.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.Date;
+
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+
+/**
+ * sheet cell's properties
+ * @author pyx
+ * @date 2018/12/3
+ */
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Cell {
+
+    /**
+     * Horizontal Aign
+     *
+     * @return return horizontal align
+     */
+    HorizontalAlignment horizontal() default HorizontalAlignment.CENTER;
+
+    /**
+     * Vertical Align
+     *
+     * @return return vertical align
+     */
+    VerticalAlignment vertical() default VerticalAlignment.CENTER;
+
+    /***
+     * 暂时未使用此属性
+     *
+     * import fomat when meet {@link Date}
+     */
+    String dateFomate() default "yyyy-MM-dd HH:mm:ss";
+
+}

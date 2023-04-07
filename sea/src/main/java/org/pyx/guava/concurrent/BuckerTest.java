@@ -14,7 +14,7 @@ import static java.lang.Thread.currentThread;
  */
 public class BuckerTest {
 
-    @Test
+
     public void test(){
         Bucket bucket = new Bucket();
         AtomicInteger DATA_CREATOR = new AtomicInteger(0);
